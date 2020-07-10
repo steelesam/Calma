@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/redwhitebg"
+    tools:context=".DependantDash">
+
+    <ImageView
+        android:id="@+id/mapDash"
+        android:layout_width="90dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/usersName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="31dp"
+        android:fontFamily="@font/raleway"
+        android:text=""
+        android:textColor="@color/colorWhite"
+        android:textFontWeight="500"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/mapDash"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/accountType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/raleway"
+        android:text="Dependant"
+        android:textColor="@color/colorWhite"
+        android:textFontWeight="500"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/mapDash"
+        app:layout_constraintTop_toBottomOf="@+id/usersName" />
+
+    <!--Main Menu Section-->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="390dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@drawable/dash_menu"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountType">
+
+        <!--Menu Textview-->
+        <TextView
+            android:id="@+id/textview_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/raleway"
+            android:text="Dashboard"
+            android:textColor="@color/text_shadow"
+            android:textFontWeight="500"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/mapDash"
+            app:layout_constraintTop_toBottomOf="@+id/usersName" />
+
+        <!--Columns-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="24dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="18dp">
+
+            <!--Yellow Option-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:background="@drawable/option_yellow"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/myProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/editicon30"></ImageView>
+
+                    <TextView
+                        android:id="@+id/green_card_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="17dp"
+                        android:fontFamily="@font/raleway"
+                        android:text="My Profile"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!--Green Option-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/option_green"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/trustedPeople"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/contactsicon30"></ImageView>
+
+                    <TextView
+                        android:id="@+id/yellow_card_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="17dp"
+                        android:fontFamily="@font/raleway"
+                        android:text="Trusted People"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <!--Red Option-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/option_red"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/dashHints"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/questionmarkicon30"></ImageView>
+
+                    <TextView
+                        android:id="@+id/blue_card_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="17dp"
+                        android:fontFamily="@font/raleway"
+                        android:text="Tips &amp; Hints"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Blue Option-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/option_blue"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/alertTrackerOption"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="12dp"
+                        android:src="@drawable/barcharticon30"></ImageView>
+
+                    <TextView
+                        android:id="@+id/lightblue_card_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="17dp"
+                        android:fontFamily="@font/raleway"
+                        android:text="Alert Tracker"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/logoutButton"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logouticon30" />
+
+    <ImageView
+        android:id="@+id/animationPic"
+        android:layout_width="184dp"
+        android:layout_height="162dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:srcCompat="@drawable/mapnew" />
+
+    <TextView
+        android:id="@+id/wantToSendSignal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway"
+        android:text="Want to send an alert?"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animationPic" />
+
+    <Button
+        android:id="@+id/signalPageButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/alert_page_button_bg"
+        android:fontFamily="@font/raleway"
+        android:text="Alerts Page"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hitBelow" />
+
+    <TextView
+        android:id="@+id/hitBelow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:fontFamily="@font/raleway"
+        android:text="Hit the button below"
+        android:textColor="@color/text_shadow"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wantToSendSignal" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

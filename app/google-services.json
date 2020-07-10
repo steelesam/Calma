@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "535943561408",
+    "firebase_url": "https://calma-64338.firebaseio.com",
+    "project_id": "calma-64338",
+    "storage_bucket": "calma-64338.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535943561408:android:38583da6c2d11ea777ed25",
+        "android_client_info": {
+          "package_name": "com.example.calma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535943561408-ovuodpnu332brbhgjqs3s483d81frvu3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.calma",
+            "certificate_hash": "8b34768cac7f42901204a8d608829276d5a2d19d"
+          }
+        },
+        {
+          "client_id": "535943561408-bgm426v8v1526eisu8sib1bsqllpsbg6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDssAwlJVMwgLgXPbKRG_hJxaUTxeuxvSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535943561408-bgm426v8v1526eisu8sib1bsqllpsbg6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

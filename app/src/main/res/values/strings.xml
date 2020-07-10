@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Calma</string>
+    <string name="forgot_pass">Forgot your password?</string>
+    <string name="login_with_google">Sign in with Google</string>
+    <string name="login_with_fb">Sign in with Facebook</string>
+    <string name="signup_with_google">Sign up with Google</string>
+    <string name="signup_with_fb">Sign up with Facebook</string>
+    <string name="no_account">Don\'t have an account? Sign up</string>
+    <string name="account_type_info">What does this mean?</string>
+    <string name="dependant_hint">This account type means that you are likely using calma as you may
+    find yourself in vulnerable positions in which you may require assistance from a "trustee". Having this account type will
+    allow you to set a number of trusted contacts that you can request assistance from with three levels of severity. A typical dependant
+    user would be a young child, a person with a disability or anybody who is likely to be put in a vulnerable situation. This could extend
+    as far as somebody going on a blind date, who just wants peace of mind knowing someone will be there for them if things get murky!</string>
+    <string name="trustee_hint">This account type means that you will be able to be assigned to one or more "dependant",
+    where you will then be able to respond to their requests for assistance. You will be provided with different levels of analytics
+    depending on the severity level of the request that is sent. A typical trustee user could be a parent of a child or somebody who is responsible
+    for the wellbeing of another, such as a carer for people with disabilities or a carer for the elderly. </string>
+    <string-array name="accountType">
+        <item>Dependant</item>
+        <item>Trustee</item>
+    </string-array>
+    <string name="tracking_enabled_notif">Tracking is currently enabled. Tap to cancel.</string>
+    <string name="test_email">test@test.com</string>
+    <string name="test_password">testpassword</string>
+    <string name="firebase_path">Location</string>
+    <string name="title_activity_green_maps">Map</string>
+    <string name="title_activity_amber_maps">Map</string>
+    <string name="title_activity_google_maps">Map</string>
+    <string name="dependant_dash_hint">\n- Calma is designed to help vulnerable people feel safe by being able to easily request help from people
+    they trust.\n\n
+        - If you press the GREEN button, this would indicate that you are okay and not in any dire need of help. A location marker of your position will be sent via text.\n\n
+If you press the AMBER button, this would indicate that you feels unsafe or threatened, but is not in any ‘imminent danger’.
+        - A personalised message will be included in the text that can be changed in the AMBER settings page.
+        Hitting this button will also show you the local hospital and police stations.\n\n
+        - Pressing the RED button would have the most consequences of all 3 buttons.
+        This button is used for when you feel you are in imminent danger and need assistance immediately.
+        When this button is pressed, the user’s GPS location is continuously sent out and it cannot be switched off without a password being entered correctly.
+        A report will be compiled and sent to your trusted contact so that they can aid you effectively.
+    </string>
+    <string name="trustee_dash_hint">\n- Calma is designed to help vulnerable people feel safe by being able to easily request help from people
+    they trust.\n\n
+        - As a trustee, you can achieve this by having the ability to contact your dependants through a simple and easy interface. You can reach this interface
+        by hitting the Contact Dependant button on your dashboard.\n\n
+        - If you hit the Alert Tracker button from the dashboard, you will be able to see a log of all the times that your dependants have sent alerts,
+        allowing an amalgamation of data for you to use to be able to help them in various ways - whether in the present or future.\n\n
+        - Your own profile can be edited through the My Profile option on your dashboard, and you can add dependants to your account list from the
+        Contacts interface.
+    </string>
+</resources>
