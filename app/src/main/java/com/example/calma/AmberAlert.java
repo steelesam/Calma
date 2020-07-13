@@ -2,9 +2,9 @@ package com.example.calma;
 
 public class AmberAlert {
 
-    private double longitude;
-    private double latitude;
-    private long time;
+    private String longitude;
+    private String latitude;
+    private String time;
     private String date;
     private String recipient;
 
@@ -14,12 +14,15 @@ public class AmberAlert {
      * @param longitude
      * @param latitude
      */
-    public AmberAlert(double longitude, double latitude, long time, String date, String recipient) {
+    public AmberAlert(String longitude, String latitude, String time, String date, String recipient) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.time = time;
         this.date = date;
         this.recipient = recipient;
+    }
+
+    public AmberAlert() {
     }
 
     public String getRecipient() {
@@ -30,11 +33,11 @@ public class AmberAlert {
         this.recipient = recipient;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(long time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -46,19 +49,26 @@ public class AmberAlert {
         this.date = date;
     }
 
-    public double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    @Override
+    public String toString() {
+        return "Date sent:" + date + "\n" + "Sent to: " + recipient + "\n" + "Longitude: " + longitude + ", Latitude: " + latitude + "\n"
+                + "Time sent: "+ time + "\n";
+
     }
 }

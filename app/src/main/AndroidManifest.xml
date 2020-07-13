@@ -20,7 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RedSettings"></activity>
+        <activity android:name=".DependantRedLog"></activity>
+        <activity android:name=".DependantAmberLog" />
+        <activity android:name=".DependantGreenLog" />
+        <activity android:name=".RedSettings" />
         <activity android:name=".AmberSettings" />
         <activity android:name=".GreenSettings" />
         <activity android:name=".DependantAlertTracker" />

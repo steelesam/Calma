@@ -67,7 +67,7 @@ public class TrafficLights extends AppCompatActivity implements AdapterView.OnIt
         blueTracker = findViewById(R.id.blueTracker);
 
         // Spinner for choosing recipient(s) of alert
-        final Spinner spinner = (Spinner) findViewById(R.id.trusteeOption);
+        final Spinner spinner = findViewById(R.id.trusteeOption);
         spinner.setOnItemSelectedListener(this);
         dbRef = FirebaseDatabase.getInstance().getReference().child("Users").child(userID).child("ContactsList");
         Query query = dbRef.getRef();

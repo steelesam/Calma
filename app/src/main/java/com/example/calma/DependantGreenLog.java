@@ -1,72 +1,74 @@
 package com.example.calma;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class DependantAlertTracker extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class DependantGreenLog extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     TextView usersName;
-    Button trafficLightPage;
-    LinearLayout greenLog, amberLog, redLog;
+    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
+    ListView listView;
+    ImageView logoutButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dependant_alert_tracker);
+        setContentView(R.layout.activity_dependant_green_log);
 
         mAuth = FirebaseAuth.getInstance();
         usersName = findViewById(R.id.usersName);
         loadUserInformation();
-        trafficLightPage = findViewById(R.id.signalPageButton);
-        trafficLightPage.setOnClickListener(new View.OnClickListener() {
+        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TrafficLights.class);
-                startActivity(intent);
+                openLogoutPage();
             }
         });
 
-        greenLog = findViewById(R.id.greenLog);
-        amberLog = findViewById(R.id.amberLog);
-        redLog = findViewById(R.id.amberLog);
+        String userID = mAuth.getCurrentUser().getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID).child("Green Alert");
+        listView = (ListView) findViewById(R.id.greenAlertLogListView);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(arrayAdapter);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    String value = dataSnapshot1.getValue(GreenAlert.class).toString();
+                    arrayList.add(value);
+                    arrayAdapter.notifyDataSetChanged();
+                }
 
-        greenLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DependantGreenLog.class);
-                startActivity(intent);
             }
-        });
-        amberLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DependantAmberLog.class);
-                startActivity(intent);
-            }
-        });
-        redLog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DependantRedLog.class);
-                startActivity(intent);
-            }
-        });
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -88,5 +90,13 @@ public class DependantAlertTracker extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * Opens logout page
+     */
+    private void openLogoutPage() {
+        Intent intent = new Intent(this, Logout.class);
+        startActivity(intent);
     }
 }

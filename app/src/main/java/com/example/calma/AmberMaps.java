@@ -127,13 +127,13 @@ public class AmberMaps extends FragmentActivity implements OnMapReadyCallback {
                     final String myLatitude = String.valueOf(currentLocation.getLatitude());
                     final String myLongitude = String.valueOf(currentLocation.getLongitude());
                     long time = System.currentTimeMillis();
-                    final long timeSent = time;
+                    final String timeSent = String.valueOf(time);
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     Date date = new Date();
                     String strDate = dateFormat.format(date);
 
                     // Adds the latitude and longitude of currentLocation, time it was sent, date it was sent and recipient to Firebase Database for future use
-                    AmberAlert amberAlert = new AmberAlert(currentLocation.getLongitude(), currentLocation.getLatitude(), timeSent, strDate, selectedName);
+                    AmberAlert amberAlert = new AmberAlert(myLongitude, myLatitude, timeSent, strDate, selectedName);
                     FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid()).child("Amber Alert").push()
                             .setValue(amberAlert).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
