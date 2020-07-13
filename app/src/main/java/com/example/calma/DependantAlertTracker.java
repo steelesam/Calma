@@ -42,9 +42,6 @@ public class DependantAlertTracker extends AppCompatActivity {
         });
 
         greenLog = findViewById(R.id.greenLog);
-        amberLog = findViewById(R.id.amberLog);
-        redLog = findViewById(R.id.amberLog);
-
         greenLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,18 +49,18 @@ public class DependantAlertTracker extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        amberLog = findViewById(R.id.amberLog);
         amberLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DependantAmberLog.class);
-                startActivity(intent);
+                openAmberLog();
             }
         });
+        redLog = findViewById(R.id.redLog);
         redLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DependantRedLog.class);
-                startActivity(intent);
+                openRedLog();
             }
         });
 
@@ -88,5 +85,21 @@ public class DependantAlertTracker extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * Opens amber log
+     */
+    private void openAmberLog(){
+        Intent intent2 = new Intent(this, DependantAmberLog.class);
+        startActivity(intent2);
+    }
+
+    /**
+     * Opens red log
+     */
+    private void openRedLog(){
+        Intent intent3 = new Intent(this, DependantRedLog.class);
+        startActivity(intent3);
     }
 }
