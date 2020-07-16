@@ -67,7 +67,7 @@ public class AmberAlert {
 
     @Override
     public String toString() {
-        return "Date sent:" + date + "\n" + "Sent to: " + recipient + "\n" + "Longitude: " + longitude + ", Latitude: " + latitude + "\n"
+        return "Date sent: " + date + "\n" + "Sent to: " + recipient + "\n" + "Longitude: " + longitude + ", Latitude: " + latitude + "\n"
                 + "Time sent: "+ time + "\n";
 
     }

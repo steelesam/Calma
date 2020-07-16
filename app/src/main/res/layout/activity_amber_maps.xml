@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AmberMaps" />
+    android:orientation="vertical">
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="660dp"
+        tools:context=".AmberMaps" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/viewHospitals"
+            android:layout_width="195dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/raleway"
+            android:text="View hospitals"
+            android:onClick="showHospitals"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="16sp">
+
+        </Button>
+
+        <Button
+            android:id="@+id/viewPoliceStations"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:fontFamily="@font/raleway"
+            android:text="View police stations"
+            android:onClick="showPoliceStations"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="16sp">
+
+        </Button>
+
+    </LinearLayout>
+
+    </LinearLayout>

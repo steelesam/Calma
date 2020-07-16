@@ -12,6 +12,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -51,6 +54,8 @@ public class AmberMaps extends FragmentActivity implements OnMapReadyCallback {
     private final long MIN_DISTANCE = 5;
     private static final int REQUEST_CODE = 101;
     private LatLng latLng;
+    private Button hospitals, policeStations;
+    private int ProximityRadius = 10000;
 
 
     @Override
@@ -65,6 +70,22 @@ public class AmberMaps extends FragmentActivity implements OnMapReadyCallback {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLastLocation();
+
+        hospitals = findViewById(R.id.viewHospitals);
+        hospitals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHospitals(hospitals);
+            }
+        });
+        policeStations = findViewById(R.id.viewPoliceStations);
+        policeStations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPoliceStations(policeStations);
+            }
+        });
+
 
     }
 
@@ -139,7 +160,7 @@ public class AmberMaps extends FragmentActivity implements OnMapReadyCallback {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(AmberMaps.this, "Amber alert sent", Toast.LENGTH_SHORT).show(); 
+                                Toast.makeText(AmberMaps.this, "Amber alert sent", Toast.LENGTH_SHORT).show();
                                 openAmber();
                             } else {
                                 Toast.makeText(AmberMaps.this, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -211,6 +232,7 @@ public class AmberMaps extends FragmentActivity implements OnMapReadyCallback {
 
     /**
      * If location service permissions are granted then proceed and fetch location of user
+     *
      * @param requestCode
      * @param permissions
      * @param grantResults
@@ -232,6 +254,59 @@ public class AmberMaps extends FragmentActivity implements OnMapReadyCallback {
     private void openAmber() {
         Intent intent = new Intent(this, AmberMaps.class);
         startActivity(intent);
+    }
+
+
+    /**
+     * Shows hospitals in X radius
+     */
+    public void showHospitals(View view) {
+        String hospital = "hospital";
+        Object transferData[] = new Object[2];
+        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
+        String url = getUrl(currentLocation.getLatitude(), currentLocation.getLongitude(), hospital);
+        transferData[0] = mMap;
+        transferData[1] = url;
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Current Location"));
+        getNearbyPlaces.execute(transferData);
+        Toast.makeText(this, "Searching for nearby hospitals", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Shows police stations in X radius
+     */
+    public void showPoliceStations(View view) {
+        String policeStation = "police";
+        Object transferData[] = new Object[2];
+        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
+        String url = getUrl(currentLocation.getLatitude(), currentLocation.getLongitude(), policeStation);
+        transferData[0] = mMap;
+        transferData[1] = url;
+        mMap.clear();
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Current Location"));
+        getNearbyPlaces.execute(transferData);
+        Toast.makeText(this, "Searching for nearby police stations", Toast.LENGTH_SHORT).show();
+
+    }
+
+    /** Appends string segments used to send Places API request
+     * @param latitude
+     * @param longitude
+     * @param nearbyPlace
+     * @return
+     */
+    private String getUrl(double latitude, double longitude, String nearbyPlace) {
+        StringBuilder googleURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googleURL.append("location=" + latitude + "," + longitude);
+        googleURL.append("&radius=" + ProximityRadius);
+        googleURL.append("&type=" + nearbyPlace);
+        googleURL.append("&sensor=true");
+        googleURL.append("&key=" + "AIzaSyC4sWRF0S7Zk9VBSWOF8zlEjY_EDg4eM1I");
+
+        Log.d("GoogleMapsActivity", "url = " + googleURL.toString());
+
+        return googleURL.toString();
     }
 
 
