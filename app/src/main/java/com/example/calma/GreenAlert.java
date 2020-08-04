@@ -8,12 +8,13 @@ public class GreenAlert {
     private String date;
     private String recipient;
 
+
     /**
      * Constructor with arguments
      * @param longitude
      * @param latitude
      */
-    public GreenAlert(String longitude, String latitude, String time, String date, String recipient) {
+    public GreenAlert( String longitude, String latitude, String time, String date, String recipient) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.time = time;

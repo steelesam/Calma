@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Declare elements
      */
-    private EditText emailEditText, passwordEditText;
-    private TextView signUpLink, forgotPw;
-    private Button loginButton;
+    EditText emailEditText, passwordEditText;
+    TextView signUpLink, forgotPw;
+    Button loginButton;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
 

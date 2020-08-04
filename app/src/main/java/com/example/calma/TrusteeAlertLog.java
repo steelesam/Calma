@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,25 +19,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class TrusteeDash extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TrusteeAlertLog extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     TextView usersName;
-    LinearLayout trustedContacts, editProfile, dashHints, alertTracker;
+    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
+    ListView listView;
     ImageView logoutButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trustee_dash);
+        setContentView(R.layout.activity_trustee_alert_log);
 
-        trustedContacts = findViewById(R.id.trustee_contacts_link);
-        trustedContacts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openContactsPage();
-            }
-        });
+        mAuth = FirebaseAuth.getInstance();
+        usersName = findViewById(R.id.usersName);
+        loadUserInformation();
         logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,31 +47,41 @@ public class TrusteeDash extends AppCompatActivity {
                 openLogoutPage();
             }
         });
-        usersName = findViewById(R.id.usersName);
-        dashHints = findViewById(R.id.trusteeHints);
-        dashHints.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDashHints();
-            }
-        });
-        mAuth = FirebaseAuth.getInstance();
-        loadUserInformation();
 
-        editProfile = findViewById(R.id.editProfile);
-        editProfile.setOnClickListener(new View.OnClickListener() {
+        String userID = mAuth.getCurrentUser().getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID).child("ContactsList");
+        listView = (ListView) findViewById(R.id.contactsAlertLogListView);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(arrayAdapter);
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                openEditProfile();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    String value = dataSnapshot1.getValue(Contact.class).toString();
+                    arrayList.add(value);
+                    arrayAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
-        alertTracker = findViewById(R.id.alertTracker);
-        alertTracker.setOnClickListener(new View.OnClickListener() {
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                openAlertTracker();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selection = parent.getItemAtPosition(position).toString();
+                Intent intent = new Intent(getApplicationContext(), TrusteeIndividualLog.class);
+                intent.putExtra("SelectedContact", selection);
+                startActivity(intent);
             }
         });
+
+
+
     }
 
     /**
@@ -91,42 +105,10 @@ public class TrusteeDash extends AppCompatActivity {
     }
 
     /**
-     * Opens contacts page
-     */
-    private void openContactsPage() {
-        Intent intent = new Intent(this, TrusteeContacts.class);
-        startActivity(intent);
-    }
-
-    /**
      * Opens logout page
      */
     private void openLogoutPage() {
         Intent intent = new Intent(this, Logout.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Opens EditProfile page
-     */
-    private void openEditProfile() {
-        Intent intent = new Intent(this, TrusteeEditProfile.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Opens Tips and Hints page
-     */
-    private void openDashHints() {
-        Intent intent = new Intent(this, TrusteeDashHints.class);
-        startActivity(intent);
-    }
-
-    /**
-     * Opens Tips and Hints page
-     */
-    private void openAlertTracker() {
-        Intent intent = new Intent(this, TrusteeAlertLog.class);
         startActivity(intent);
     }
 }

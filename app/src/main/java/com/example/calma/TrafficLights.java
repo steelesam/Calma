@@ -175,6 +175,15 @@ public class TrafficLights extends AppCompatActivity implements AdapterView.OnIt
                 openTrackerLog();
             }
         });
+        redAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RedMaps.class);
+                intent.putExtra("phoneMap", (Serializable) phoneMap);
+                intent.putExtra("spinnerName", String.valueOf(spinner.getSelectedItem()));
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -229,6 +238,7 @@ public class TrafficLights extends AppCompatActivity implements AdapterView.OnIt
 
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
+        Toast.makeText(this, "Trusted contact must be selected to proceed", Toast.LENGTH_SHORT).show();
 
     }
 

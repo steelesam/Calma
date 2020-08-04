@@ -223,6 +223,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/alertTracker"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:orientation="vertical"

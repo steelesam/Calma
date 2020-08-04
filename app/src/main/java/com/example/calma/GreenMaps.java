@@ -114,6 +114,7 @@ public class GreenMaps extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onLocationChanged(Location location) {
                 try {
+
                     latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(latLng).title("Current Position"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10.2f));
@@ -141,18 +142,7 @@ public class GreenMaps extends FragmentActivity implements OnMapReadyCallback {
 
                     // Adds the latitude and longitude of currentLocation, time it was sent, date it was sent and recipient to Firebase Database for future use
                     GreenAlert greenAlert = new GreenAlert(myLongitude, myLatitude, timeSent, strDate, selectedName);
-                    FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid()).child("Green Alert").push()
-                            .setValue(greenAlert).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(GreenMaps.this, "Green alert sent", Toast.LENGTH_SHORT).show();
-                                backToDash();
-                            } else {
-                                Toast.makeText(GreenMaps.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                    addGreenAlertToDb(greenAlert);
 
 
                     sendersName = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
@@ -203,9 +193,9 @@ public class GreenMaps extends FragmentActivity implements OnMapReadyCallback {
             Toast.makeText(this, "Location services must be enabled to use this service.", Toast.LENGTH_LONG).show();
             return;
         }
-        if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, locationListener);
-        } else if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+        } else if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, locationListener);
         }
 
@@ -214,6 +204,7 @@ public class GreenMaps extends FragmentActivity implements OnMapReadyCallback {
 
     /**
      * If location service permissions are granted then proceed and fetch location of user
+     *
      * @param requestCode
      * @param permissions
      * @param grantResults
@@ -229,11 +220,24 @@ public class GreenMaps extends FragmentActivity implements OnMapReadyCallback {
         }
     }
 
+
+
     /**
-     * Returns user to traffic lights page.
+     * Pushes greenAlert object to database for storage
+     * @param greenAlert
      */
-    public void backToDash() {
-        Intent intent = new Intent(this, DependantDash.class);
-        startActivity(intent);
+    public void addGreenAlertToDb(GreenAlert greenAlert) {
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid()).child("Green Alert").push()
+                .setValue(greenAlert).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(GreenMaps.this, "Green alert sent", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(GreenMaps.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

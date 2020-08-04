@@ -4,6 +4,234 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/redwhitebg"
     tools:context=".RedSettings">
+
+    <ImageView
+        android:id="@+id/mapDash"
+        android:layout_width="90dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/usersName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="31dp"
+        android:fontFamily="@font/raleway"
+        android:text=""
+        android:textColor="@color/colorWhite"
+        android:textFontWeight="500"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/mapDash"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pageDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/raleway"
+        android:text="Red Settings"
+        android:textColor="@color/colorWhite"
+        android:textFontWeight="500"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/mapDash"
+        app:layout_constraintTop_toBottomOf="@+id/usersName" />
+
+    <!--Main Menu Section-->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="390dp"
+        android:layout_height="450dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@drawable/dash_menu"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pageDesc">
+
+        <!--Menu Textview-->
+        <TextView
+            android:id="@+id/textview_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/raleway"
+            android:text="Add Safespot"
+            android:textColor="@color/text_shadow"
+            android:textFontWeight="500"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/mapDash"
+            app:layout_constraintTop_toBottomOf="@+id/usersName" />
+
+        <!--Columns-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="259dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="24dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="18dp">
+
+
+            <!--Green Option-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="350dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/option_green"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+
+                    <EditText
+                        android:id="@+id/houseNumberEditText"
+                        android:layout_width="320dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/fieldbg"
+                        android:fontFamily="@font/raleway"
+                        android:hint="  House number"
+                        android:textColor="@color/text_shadow"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/streetEditText"
+                        android:layout_width="320dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/fieldbg"
+                        android:fontFamily="@font/raleway"
+                        android:hint="  Street"
+                        android:textColor="@color/text_shadow"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/townEditText"
+                        android:layout_width="320dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/fieldbg"
+                        android:fontFamily="@font/raleway"
+                        android:hint="  Town"
+                        android:textColor="@color/text_shadow"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/cityEditText"
+                        android:layout_width="320dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/fieldbg"
+                        android:fontFamily="@font/raleway"
+                        android:hint="  City"
+                        android:textColor="@color/text_shadow"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/postcodeEditText"
+                        android:layout_width="320dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/fieldbg"
+                        android:fontFamily="@font/raleway"
+                        android:hint="  Postcode"
+                        android:textColor="@color/text_shadow"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/countyEditText"
+                        android:layout_width="320dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/fieldbg"
+                        android:fontFamily="@font/raleway"
+                        android:hint="  County"
+                        android:textColor="@color/text_shadow"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/countryEditText"
+                        android:layout_width="320dp"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/fieldbg"
+                        android:fontFamily="@font/raleway"
+                        android:hint="  Country"
+                        android:textColor="@color/text_shadow"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/addSafePlaceBtn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/addicon30" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/logoutButton"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logouticon30" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
