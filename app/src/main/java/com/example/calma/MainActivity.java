@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * OnCreate
+     *
      * @param savedInstanceState
      */
     @Override
@@ -68,35 +71,37 @@ public class MainActivity extends AppCompatActivity {
                 openSignUpPage();
             }
         });
+
+
     }
 
     /**
      * Checks user credentials and logs in if correct
      */
-    private void userLogin(){
+    private void userLogin() {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
         // Validations
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             emailEditText.setError("Email is required");
             emailEditText.requestFocus();
             return;
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText.setError("Please enter a valid email address");
             emailEditText.requestFocus();
             return;
         }
 
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             passwordEditText.setError("Please enter a password");
             passwordEditText.requestFocus();
             return;
         }
 
-        if(password.length() <6) {
+        if (password.length() < 6) {
             passwordEditText.setError("Password must be at least 6 characters long");
             passwordEditText.requestFocus();
             return;
@@ -106,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                     String userID = currentUser.getUid();
                     DatabaseReference loginDB = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
@@ -114,21 +119,22 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String accountType = dataSnapshot.child("accountType").getValue().toString();
-                            if(accountType.equals("Dependant")){
+                            if (accountType.equals("Dependant")) {
                                 Intent intentDependant = new Intent(MainActivity.this, DependantDash.class);
                                 intentDependant.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intentDependant);
                                 finish();
-                            } else if(accountType.equals("Trustee")){
+                            } else if (accountType.equals("Trustee")) {
                                 Intent intentTrustee = new Intent(MainActivity.this, TrusteeDash.class);
                                 intentTrustee.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intentTrustee);
                                 finish();
                             } else {
-                                Toast.makeText(getApplicationContext(),"Something went wrong, please try again.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Something went wrong, please try again.", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         }
+
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -136,19 +142,18 @@ public class MainActivity extends AppCompatActivity {
                     });
                 } else {
                     // not logged in
-                    Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
 
-
     /**
      * Opens SignUp page
      */
-    public void openSignUpPage(){
-        Intent intent = new Intent(this,SignUpActivity.class);
+    public void openSignUpPage() {
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 

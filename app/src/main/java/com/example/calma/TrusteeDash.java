@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class TrusteeDash extends AppCompatActivity {
     TextView usersName;
     LinearLayout trustedContacts, editProfile, dashHints, alertTracker;
     ImageView logoutButton;
+    Button contactDependant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,13 @@ public class TrusteeDash extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openAlertTracker();
+            }
+        });
+        contactDependant = findViewById(R.id.chooseContactButton);
+        contactDependant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openChooseContact();
             }
         });
     }
@@ -123,10 +132,18 @@ public class TrusteeDash extends AppCompatActivity {
     }
 
     /**
-     * Opens Tips and Hints page
+     * Opens alert tracker page
      */
     private void openAlertTracker() {
         Intent intent = new Intent(this, TrusteeAlertLog.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Opens choose contact page
+     */
+    private void openChooseContact(){
+        Intent intent = new Intent(this, TrusteeChooseContact.class);
         startActivity(intent);
     }
 }

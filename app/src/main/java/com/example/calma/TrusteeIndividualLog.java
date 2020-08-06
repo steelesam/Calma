@@ -41,7 +41,7 @@ public class TrusteeIndividualLog extends AppCompatActivity {
         final String selectedName = intent.getStringExtra("SelectedContact");
         String[] separated = selectedName.split(":");
         final String selectedContactName = separated[1].trim();
-        //nameOfContact.setText(selectedContactName);
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
         final Query query = databaseReference.getRef().orderByChild("name");

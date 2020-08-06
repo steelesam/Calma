@@ -35,34 +35,36 @@ public class SplashScreen extends AppCompatActivity {
             Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(loginIntent);
             finish();
-        }
-        //String userID = currentUser.getUid();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        } else {
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String accountType = dataSnapshot.child("accountType").getValue().toString();
-                if (mAuth.getCurrentUser() != null && accountType.equals("Dependant")) {
-                    Intent dependantIntent = new Intent(getApplicationContext(), DependantDash.class);
-                    startActivity(dependantIntent);
-                    finish();
-                } else if (mAuth.getCurrentUser() != null && accountType.equals("Trustee")) {
-                    Intent trusteeIntent = new Intent(getApplicationContext(), TrusteeDash.class);
-                    startActivity(trusteeIntent);
-                    finish();
-                } else if (mAuth.getCurrentUser() == null ) {
-                    Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(loginIntent);
-                    finish();
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String accountType = dataSnapshot.child("accountType").getValue().toString();
+                    if (mAuth.getCurrentUser() != null && accountType.equals("Dependant")) {
+                        Intent dependantIntent = new Intent(getApplicationContext(), DependantDash.class);
+                        startActivity(dependantIntent);
+                        finish();
+                    } else if (mAuth.getCurrentUser() != null && accountType.equals("Trustee")) {
+                        Intent trusteeIntent = new Intent(getApplicationContext(), TrusteeDash.class);
+                        startActivity(trusteeIntent);
+                        finish();
+                    } else if (mAuth.getCurrentUser() == null ) {
+                        Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(loginIntent);
+                        finish();
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
 
-    }
+        }
+        }
+
+
 }
