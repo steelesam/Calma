@@ -1,6 +1,6 @@
 package com.example.calma;
 
-public class RedAlert extends Alert {
+public abstract class Alert {
 
     private String longitude;
     private String latitude;
@@ -14,8 +14,7 @@ public class RedAlert extends Alert {
      * @param longitude
      * @param latitude
      */
-    public RedAlert(String longitude, String latitude, String time, String date, String recipient) {
-        super(longitude, latitude, time, date, recipient);
+    public Alert(String longitude, String latitude, String time, String date, String recipient) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.time = time;
@@ -23,7 +22,7 @@ public class RedAlert extends Alert {
         this.recipient = recipient;
     }
 
-    public RedAlert() {
+    public Alert() {
     }
 
     public String getLongitude() {
@@ -65,13 +64,4 @@ public class RedAlert extends Alert {
     public void setRecipient(String recipient) {
         this.recipient = recipient;
     }
-
-    @Override
-    public String toString() {
-        return "Date sent: " + date + "\n" + "Sent to: " + recipient + "\n" + "Longitude: " + longitude + ", Latitude: " + latitude + "\n"
-                + "Time sent: "+ time + "\n";
-
-    }
-
-
 }

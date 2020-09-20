@@ -1,6 +1,6 @@
 package com.example.calma;
 
-public class AmberAlert {
+public class AmberAlert extends Alert {
 
     private String longitude;
     private String latitude;
@@ -15,6 +15,7 @@ public class AmberAlert {
      * @param latitude
      */
     public AmberAlert(String longitude, String latitude, String time, String date, String recipient) {
+        super(longitude, latitude, time, date, recipient);
         this.longitude = longitude;
         this.latitude = latitude;
         this.time = time;
