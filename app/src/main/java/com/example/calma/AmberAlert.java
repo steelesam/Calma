@@ -2,11 +2,6 @@ package com.example.calma;
 
 public class AmberAlert extends Alert {
 
-    private String longitude;
-    private String latitude;
-    private String time;
-    private String date;
-    private String recipient;
 
     /**
      * Constructor with arguments
@@ -16,11 +11,6 @@ public class AmberAlert extends Alert {
      */
     public AmberAlert(String longitude, String latitude, String time, String date, String recipient) {
         super(longitude, latitude, time, date, recipient);
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.time = time;
-        this.date = date;
-        this.recipient = recipient;
     }
 
     public AmberAlert() {

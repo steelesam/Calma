@@ -2,11 +2,11 @@ package com.example.calma;
 
 public abstract class Alert {
 
-    private String longitude;
-    private String latitude;
-    private String time;
-    private String date;
-    private String recipient;
+    public String longitude;
+    public String latitude;
+    public String time;
+    public String date;
+    public String recipient;
 
     /**
      * Constructor with arguments
